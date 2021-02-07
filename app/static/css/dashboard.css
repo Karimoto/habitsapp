@@ -1,0 +1,36 @@
+.info{
+  width: auto;
+  float: left;
+}
+
+.inventory{
+  width: auto;
+  float: left;
+  height: 500px;
+  overflow:scroll;
+  margin-left: 15px;
+}
+
+.tholder{
+  width: auto;
+  float: left;
+  height: 500px;
+  overflow:scroll;
+}
+
+.shop{
+  width: auto;
+  float: left;
+  height: 500px;
+  overflow:scroll;
+  margin-left: 15px;
+}
+
+.clear{
+  clear: both;
+  }
+
+.completed{
+  background-color: rgb(87, 201, 97);
+}
+

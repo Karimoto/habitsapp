@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class=container>
+    <div class=info>
+        <h1>Witaj {{ current_user.nickname }}, masz {{ current_user.points }} punktów</h1>
+    </div>
+
+    <div class=clear>
+        <a href="{{ url_for('main.all_tasks') }}">Wszystkie zadania!</a>
+        <a href="{{ url_for('auth.logout') }}">Wyloguj się</a>
+    </div>
+    <div class=tholder>
+        <h3>Twoja zadania!</h3>
+        {% if tasks_list is defined and tasks_list|length %}
+        <form method="POST" action="{{ url_for('main.task_update') }}">
+            <table class="table" border="1" cellpadding="10px" cellspacing="5px">
+                {% for item in tasks_list %}
+                {% if completed[loop.index0] is sameas true %}
+                {% set disabled = 'disabled' %}
+                <tr class='completed'>
+                    {% else %}
+                <tr>
+                    {% endif %}
+                    <td>{{ item.name }} </td>
+                    <td><button name="done" type="submit" value={{item.task_id}}>Zrobione!</button></td>
+                    <td><button name="deletion" type="submit" class="close" aria-label="Close" value={{item.task_id}}
+                            {{ disabled }}>
+                            <span aria-hidden="true">&times;</span></button> </td>
+                </tr>
+
+                {% endfor %}
+            </table>
+        </form>
+        {% else %}
+        <table class="table" border="1" cellpadding="10px" cellspacing="5px">
+            <tr>
+                <td>
+                    Nie masz żadnych zadań, <a href="{{ url_for('main.all_tasks') }}">kliknij tutaj</a>
+                    żeby jakieś dodać!
+                </td>
+            </tr>
+        </table>
+        {% endif %}
+    </div>
+
+    <div class=inventory>
+        <h3>Ekwipunek</h3>
+        {% if items_list is defined and items_list|length %}
+        <table class="table" border="1" cellpadding="10px" cellspacing="5px">
+            {% for item in items_list %}
+            <tr>
+                <td><img src="{{url_for('static', filename=item.img_source)}}" alt={{ item.img_source }} width="30" height="30"> </td>
+                <td>{{ item.name }}</td>
+            </tr>
+
+            {% endfor %}
+        </table>
+        {% else %}
+        <table class="table" border="1" cellpadding="10px" cellspacing="5px">
+            <tr>
+                <td>
+                    Nie masz żadnych rzeczy, jak coś w sklepie!
+                </td>
+            </tr>
+        </table>
+        {% endif %}
+    </div>
+
+
+    <div class=shop>
+        <h3>Sklep</h3>
+        {% if item_shop is defined and item_shop|length %}
+        <form method="POST" action="{{ url_for('main.task_update') }}">
+            <table class="table" border="1" cellpadding="10px" cellspacing="5px">
+                {% for item in item_shop %}
+                <tr>
+                    <td><img src="{{url_for('static', filename=item.img_source)}}" alt={{ item.img_source }} width="30" height="30"> </td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.cost }}</td>
+                    <td><button name="transaction" type="submit" value={{item.item_id}}>kup</button></td>
+                </tr>
+
+                {% endfor %}
+            </table>
+        </form>
+
+        {% else %}
+        <table class="table" border="1" cellpadding="10px" cellspacing="5px">
+            <tr>
+                <td>
+                    Nie ma nic w sklepie... Chyba wszystko wykupiłeś/aś!
+                </td>
+            </tr>
+        </table>
+        {% endif %}
+
+    </div>
+
+
+
+    <div class=shop>
+        <h3>TOP5</h3>
+        <table class="table" border="1" cellpadding="10px" cellspacing="5px">
+            {% for item in top5 %}
+            <tr>
+                <td>{{ item.nickname }}</td>
+                <td>{{ item.points }}</td>
+            </tr>
+
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

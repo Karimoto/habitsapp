@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block css %}{% endblock %}
+
+{% block body %}
+<h1>H-hey</h1>
+
+<a href="{{ url_for('auth.login') }}">login</a> 
+<a href="{{ url_for('auth.sign_up') }}">rejestracja</a> 
+{% endblock %}

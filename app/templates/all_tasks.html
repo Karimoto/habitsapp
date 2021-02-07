@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block css %}{% endblock %}
+
+{% block body %}
+
+<h2><a href="{{ url_for('main.dashboard') }}">Dashboard</a></h2>
+
+<form method="POST" action="{{ url_for('main.add_task') }}">
+    <table class="table" border="1" cellpadding="10px" cellspacing="5px">
+    {% for item in left_tasks %}
+        <tr>
+            <td> {{ item.name }} </td>
+            <td><button name="tasks" type="submit" value={{item.task_id}}>dodaj</button> </td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block css %}{% endblock %}
+
+{% block body %}
+<div class="container">
+  <form method="POST" action="{{ url_for('auth.sign_up_post') }}">
+    <div class="form-group">
+      <input type="email" class="form-control" name="email" id="email" placeholder="email">
+      <input type="login" class="form-control" name="login" id="login" placeholder="login">
+      <input type="password" class="form-control" name="password" id="password" placeholder="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}
+

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block css %}
+<style>
+    .btn-info.active {
+        background-color: limegreen;
+    }
+
+    .btn_red.active {
+        background-color: red;
+    }
+</style>
+
+{% endblock %}
+
+
+
+
+{% block body %}
+<div class="container center mt-sm-3" class="mx-auto">
+
+<h4>Prosimy o wypełnienie krótkiego formularza w celu dopasowania preferencji!</h4>
+
+
+<form method="POST" action="{{ url_for('main.entry_post') }}">
+
+{% for item in start %}
+    <div class='border'>
+    <h5>{{ item.question }}</h5>
+
+        <label class="radio-inline">
+            <input type="radio" name="survey{{ loop.index0 }}" id="Radios1" value="-1">
+            Tak
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="survey{{ loop.index0 }}" id="Radios2" value="-0.5">
+            Raczej tak
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="survey{{ loop.index0 }}" id="Radios3" value="0">
+            Nie chcę odpowiadać/nie wiem
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="survey{{ loop.index0 }}" id="Radios4" value="0.5">
+            Raczej nie
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="survey{{ loop.index0 }}" id="Radios5" value="1">
+            Nie
+        </label>
+    </div>
+
+{% endfor %}
+<div class='float-right'><button type="submit" class="btn btn-primary">Submit</button></div>
+</form>
+
+{{ option }}
+</div>
+{% endblock %}
