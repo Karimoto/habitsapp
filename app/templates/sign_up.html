@@ -2,17 +2,30 @@
 
 {% block title %}Index{% endblock %}
 
-{% block css %}{% endblock %}
+{% block css %}
+<style>
+  .tight{
+    margin-top: 50px;
+    width: 200px;
+    background-color: rgb(250, 198, 198);
+  }
+</style>
+{% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container tight">
   <form method="POST" action="{{ url_for('auth.sign_up_post') }}">
     <div class="form-group">
+      E-mail
       <input type="email" class="form-control" name="email" id="email" placeholder="email">
+      Login
       <input type="login" class="form-control" name="login" id="login" placeholder="login">
+      Hasło
       <input type="password" class="form-control" name="password" id="password" placeholder="password">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <br>
+    <center><button type="submit center" class="btn btn-primary">Submit</button></center>
+    <br>
   </form>
 </div>
 {% endblock %}
