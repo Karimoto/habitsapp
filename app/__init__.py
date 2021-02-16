@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user
-from credentials import DB_URI
+from .credentials import DB_URI
 db = SQLAlchemy()
 login_manager = LoginManager()
 
