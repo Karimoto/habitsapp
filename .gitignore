@@ -133,3 +133,8 @@ dmypy.json
 
 **/__pychache__/
 
+#credentials
+
+app/credentials.py
+
+
